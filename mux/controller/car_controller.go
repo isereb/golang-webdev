@@ -33,10 +33,10 @@ func getText(car Car) string {
 	return fmt.Sprintf("My favourite Car is %s. It has %d wheels.", car.Name(), string(car.Wheels()))
 }
 
-func (car *Toyota) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	_, _ = io.WriteString(res, getText(car))
+func (car Toyota) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+	_, _ = io.WriteString(res, getText(&car))
 }
 
-func (car *Mercedes) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	_, _ = io.WriteString(res, getText(car))
+func (car Mercedes) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+	_, _ = io.WriteString(res, getText(&car))
 }
