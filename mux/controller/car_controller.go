@@ -6,37 +6,52 @@ import (
 	"net/http"
 )
 
+// Car
+
 type Car interface {
-	Name() string
-	Wheels() int
+	GetName() string
+	GetWheels() int
+	ServeHTTP(res http.ResponseWriter, req *http.Request)
 }
 
-type Mercedes string
+// Mercedes
 
-func (m *Mercedes) Name() string {
+type Mercedes struct {
+	Name   string
+	Wheels int
+}
+
+func (car Mercedes) GetName() string {
 	return "Mercedes"
 }
-func (m *Mercedes) Wheels() int {
+
+func (car Mercedes) GetWheels() int {
 	return 2
 }
 
-type Toyota string
+// Toyota
 
-func (m *Toyota) Name() string {
+type Toyota struct {
+	Name   string
+	Wheels int
+}
+
+func (car Toyota) GetName() string {
 	return "Toyota"
 }
-func (m *Toyota) Wheels() int {
+
+func (car Toyota) GetWheels() int {
 	return 4
 }
 
 func getText(car Car) string {
-	return fmt.Sprintf("My favourite Car is %s. It has %d wheels.", car.Name(), car.Wheels())
-}
-
-func (car Toyota) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	_, _ = io.WriteString(res, getText(&car))
+	return fmt.Sprintf("My favourite Car is %s. It has %d wheels.", car.GetName(), car.GetWheels())
 }
 
 func (car Mercedes) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	_, _ = io.WriteString(res, getText(&car))
+	_, _ = io.WriteString(res, getText(car))
+}
+
+func (car Toyota) ServeHTTP(res http.ResponseWriter, req *http.Request) {
+	_, _ = io.WriteString(res, getText(car))
 }
