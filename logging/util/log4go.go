@@ -32,13 +32,13 @@ func getLogger(level logSpec) *log.Logger {
 }
 
 func Debug(params ...interface{}) {
-	debugLogger.Println(params)
+	debugLogger.Println(params...)
 }
 
 func Info(params ...interface{}) {
-	infoLogger.Println(params)
+	infoLogger.Println(params...)
 }
 
 func Warn(params ...interface{}) {
-	warnLogger.Println(params)
+	warnLogger.Println(params...)
 }
