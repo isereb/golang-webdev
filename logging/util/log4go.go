@@ -1,23 +1,24 @@
 package util
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
 
 type Logger string
 
-var DebugLogger = getLogger(logSpec{
+var debugLogger = getLogger(logSpec{
 	label:    "DEBUG",
 	priority: 5000,
 })
 
-var InfoLogger = getLogger(logSpec{
+var infoLogger = getLogger(logSpec{
 	label:    "INFO",
 	priority: 10000,
 })
 
-var WarnLogger = getLogger(logSpec{
+var warnLogger = getLogger(logSpec{
 	label:    "WARN",
 	priority: 20000,
 })
@@ -29,4 +30,24 @@ type logSpec struct {
 
 func getLogger(level logSpec) *log.Logger {
 	return log.New(os.Stdin, level.label+"\t", log.LstdFlags)
+}
+
+func Debug(params ...interface{}) {
+	debugLogger.Println(makeString(params))
+}
+
+func Info(params ...interface{}) {
+	infoLogger.Println(makeString(params))
+}
+
+func Warn(params ...interface{}) {
+	warnLogger.Println(makeString(params))
+}
+
+func makeString(params []interface{}) string {
+	text := ""
+	for param := range params {
+		text += " " + fmt.Sprint(param)
+	}
+	return text
 }
