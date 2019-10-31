@@ -1,9 +1,13 @@
 package main
 
-import "github.com/isereb/golang-webdev/logging/util"
+import (
+	"fmt"
+	log "github.com/isereb/golang-webdev/logging/util"
+)
 
 func main() {
-	util.InfoLogger.Println("HELLOOOOOO")
-	util.DebugLogger.Println("HELLOOOOOO from debug")
-	util.WarnLogger.Println("oh no from warn")
+	log.Debug("HELLOOOOOO from debug")
+	log.Info("HELLOOOOOO")
+	log.Warn("oh no from warn")
+	fmt.Println()
 }
