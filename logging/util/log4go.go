@@ -5,8 +5,6 @@ import (
 	"os"
 )
 
-type Logger string
-
 var debugLogger = getLogger(logSpec{
 	label:    "DEBUG",
 	priority: 5000,
