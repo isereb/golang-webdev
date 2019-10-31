@@ -1,7 +1,6 @@
 package util
 
 import (
-	"fmt"
 	"log"
 	"os"
 )
@@ -33,21 +32,13 @@ func getLogger(level logSpec) *log.Logger {
 }
 
 func Debug(params ...interface{}) {
-	debugLogger.Println(makeString(params))
+	debugLogger.Println(params)
 }
 
 func Info(params ...interface{}) {
-	infoLogger.Println(makeString(params))
+	infoLogger.Println(params)
 }
 
 func Warn(params ...interface{}) {
-	warnLogger.Println(makeString(params))
-}
-
-func makeString(params []interface{}) string {
-	text := ""
-	for param := range params {
-		text += " " + fmt.Sprint(param)
-	}
-	return text
+	warnLogger.Println(params)
 }
