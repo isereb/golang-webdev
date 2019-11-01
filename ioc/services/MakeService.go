@@ -5,32 +5,10 @@ import (
 	"fmt"
 )
 
-type BaseService struct {
-	Name string
-}
-
 type Make struct {
-	Id   int    `json:"id"`
-	Name string `json:"name"`
-}
-
-var makes = make([]Make, 0, 3)
-
-func init() {
-	makes = append(makes, Make{
-		Id:   1,
-		Name: "Toyota",
-	})
-
-	makes = append(makes, Make{
-		Id:   2,
-		Name: "Mercedes",
-	})
-
-	makes = append(makes, Make{
-		Id:   3,
-		Name: "Chevrolet",
-	})
+	Id     int     `json:"id"`
+	Name   string  `json:"name"`
+	Models []Model `json:"-"`
 }
 
 func (s *BaseService) GetAllMakes() []Make {
