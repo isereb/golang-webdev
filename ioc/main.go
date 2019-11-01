@@ -33,7 +33,8 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/makes", handler.GetAllMakes).Methods("GET")
 	r.HandleFunc("/make/{make}", handler.GetMake).Methods("GET")
-	//r.HandleFunc("/models", rest.MakesHandler)
+	r.HandleFunc("/make/{make}/models", handler.GetAllModels).Methods("GET")
+	r.HandleFunc("/make/{make}/model/{model}", handler.GetModel).Methods("GET")
 
 	srv := &http.Server{
 		Handler:      r,
